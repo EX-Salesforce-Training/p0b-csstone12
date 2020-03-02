@@ -1,0 +1,140 @@
+/////////////////////////////////////////////////////////////////
+//
+// Name: Project 0 Bravo
+// Author: Stone, Christopher (csenterstone@gmail.com)
+// Date: 00/00/0000
+// Description: Series of apex methods to demonstrate
+// basic understanding of coding concepts.
+//
+/////////////////////////////////////////////////////////////////
+
+public class P0B {
+    public Integer nFibonacci( Integer n ){
+        Integer y;
+        Integer x;
+        Integer w;
+        Integer i;
+        
+        list<Integer> fibList = new list<integer>(n);
+        if (n == 0){
+            system.debug('output = '+n);
+            return n;
+        }
+        if (n==1){
+            system.debug('output = '+n);
+            return n;
+        }
+        else{
+            y=1;
+            x=0;
+            i=0;
+            //system.debug('output = ');
+            while ( i < n ) {
+                w=(y+x);
+                y=x;
+                x=w;
+                fibList.set(i, w);
+                i++;
+                //system.debug('output = '+ w);
+            }
+  		integer a = fibList.get(n-1);
+      	//system.debug(fibList);
+      	system.debug('output = '+ a);
+    	return a;
+        }
+    }
+    
+    public static Integer[] srtArray(Integer[] intList){
+        List<Integer> fList = new List<Integer>(intList);
+        
+        integer i = 0;
+        integer j = 0;
+        integer placeHolder;
+        integer length = fList.size(); 
+       	
+        for (j = 0; j < length-1; j++){
+        	for(i = 0; i < length-j-1; i++){
+              	if(fList.get(i) > fList.get(i+1)){
+                    placeHolder = flist.get(i);              
+                 	fList.set(i, fList.get(i+1));              
+                 	fList.set(i+1, placeHolder);
+           			}
+              	
+           	}
+       	}
+        
+        system.debug(fList);
+        return fList;
+    }
+    
+    public Integer nFactorial( Integer n) {
+        integer x=1;
+        if (n == 0){
+            return 1;
+        }else{
+            for (integer i = 1; i<=n; i++){
+                x = x*i;
+            }
+        	system.debug(x);
+        }
+        return x;
+    }
+    
+    public static Integer[] rotateLeftNTimes( Integer[] arry, Integer n) {
+        list<integer> nList = new list<integer>(arry);
+        
+        integer x;
+        integer length = nList.size();
+        integer modlow=n;
+        
+        if (n>=length){
+          	modlow = math.mod(n, length);
+        }
+        
+        for(integer i =1; i<=modlow; i++){
+            x = nList.get(0);
+            nList.remove(0);
+            nList.add(x);
+        }
+        
+        system.debug(nList);
+        return nlist;
+    }
+    
+    public static Boolean bracketsAreBalanced( String s ) {
+        Boolean pass=false;
+        if (s == ' '){
+            pass = True;
+        }
+        s=s.remove(' ');
+        Integer y = s.length();
+        Integer z = (y/2);
+        
+        String x1=s.substring(0, z);
+        String x2=s.substring(z);
+        
+        /*system.debug(x1);
+        system.debug(x2);*/
+        
+        if (math.mod(y, 2)!=0){
+            pass = false;
+        }
+        
+        if (x1==x2){
+            pass = true;
+        }
+             
+        x2=x2.reverse();
+        x2=x2.replace(')','(');
+        x2=x2.replace(']','[');
+        x2=x2.replace('}','{');
+        system.debug(x2);
+        system.debug(x1);
+        
+        if (x2==x1){
+            pass = true;
+        }
+        system.debug(pass);
+        return pass;
+	}
+}
