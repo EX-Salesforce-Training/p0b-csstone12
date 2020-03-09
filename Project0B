@@ -1,13 +1,3 @@
-/////////////////////////////////////////////////////////////////
-//
-// Name: Project 0 Bravo
-// Author: Stone, Christopher (csenterstone@gmail.com)
-// Date: 00/00/0000
-// Description: Series of apex methods to demonstrate
-// basic understanding of coding concepts.
-//
-/////////////////////////////////////////////////////////////////
-
 public class P0B {
     public Integer nFibonacci( Integer n ){
         Integer y;
@@ -137,4 +127,45 @@ public class P0B {
         system.debug(pass);
         return pass;
 	}
+    public static void updateAccountSize( ) {
+        List<Account> accList = [SELECT NumberOfEmployees FROM Account];
+        for (integer i=0;i<accList.size();i++){
+            if (accList.get(i).NumberOfEmployees <= 1000){
+                accList.get(i).Size__c='Small';
+            }
+        }
+        for (integer i=0;i<accList.size();i++){
+            if (accList.get(i).NumberOfEmployees > 1000 && accList.get(i).NumberOfEmployees <= 10000 ){
+                accList.get(i).Size__c='Medium';
+            }
+        }
+        for (integer i=0;i<accList.size();i++){
+            if (accList.get(i).NumberOfEmployees > 10000 ){
+                accList.get(i).Size__c='Large';
+            }
+        }
+        Update accList;
+    }
+    
+    public static void updateCALeads( ) {
+        List<Lead> accLeads = [SELECT State FROM Lead];
+        for (integer i=0;i<accLeads.size();i++){
+            if (accLeads.get(i).State == 'CA'){
+                accLeads.get(i).Status='Closed - Not Converted';
+                accLeads.get(i).Description='We are no longer doing business in California.';
+            }
+		}
+    }
+    public static void closePastDueOpportunities( ) { 
+    	List<Opportunity> pastDue = [SELECT CloseDate FROM Opportunity];
+        List<Opportunity> closeList = [SELECT StageName FROM Opportunity];
+        for (integer i=0;i<pastDue.size();i++){
+            if (pastDue.get(i).CloseDate == system.today()){
+                if (closeList.get(i).StageName != 'Closed Won'){
+                closeList.get(i).StageName = 'Closed Lost';
+                }
+            }
+         update closeList;
+		}
+    }
 }
