@@ -155,7 +155,7 @@ public class P0B {
                 accLeads.get(i).Description='We are no longer doing business in California.';
             }
 		}
-        Update accLeads
+        Update accLeads;
     }
     public static void closePastDueOpportunities( ) { 
     	List<Opportunity> pastDue = [SELECT CloseDate FROM Opportunity];
